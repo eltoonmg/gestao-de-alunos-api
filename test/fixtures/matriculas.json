@@ -1,0 +1,17 @@
+[
+  {
+    "testTitle": "Validar que um aluno que acaba de ser cadastrado pode ser matriculado em uma nova disciplina",
+    "dadosAluno": {
+      "nome": "Elton Machado",
+      "email": "elton@gmail.com",
+      "matricula": "12564154",
+      "senha": "123456"
+    },
+    "dadosDisciplina": {
+      "nome": "Pensamento Computacional",
+      "codigo": "PC23145",
+      "cargaHoraria": "60"
+    },
+    "statusCodeEsperado": 201
+  }
+]
