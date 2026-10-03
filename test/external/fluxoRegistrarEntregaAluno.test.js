@@ -30,12 +30,14 @@ describe("Cadastrar trabalho do aluno em disciplina", () => {
   });
 
   fluxoEntregaTrabalho.forEach((entregaTrabalho) => {
-    it.only(entregaTrabalho.testTitle, async () => {
+    it(entregaTrabalho.testTitle, async () => {
       // Cadastrar o aluno
       alunoId = await cadastrarAluno(
         await comTokenDeAdmin(),
         entregaTrabalho.dadosAluno,
       );
+
+      expect(alunoId).to.not.be.undefined;
 
       // Cadastrar Disciplina
       disciplinaId = await cadastroDisciplina(
@@ -43,12 +45,16 @@ describe("Cadastrar trabalho do aluno em disciplina", () => {
         entregaTrabalho.dadosDisciplina,
       );
 
+      expect(disciplinaId).to.not.be.undefined;
+
       // Matricular na Disciplina
       matriculaId = await cadastroMatricula(
         await comTokenDeAdmin(),
         alunoId,
         disciplinaId,
       );
+
+      expect(matriculaId).to.not.be.undefined;
 
       //Cadastrar Trabalho na Disciplina Matriculada
       const tokenAluno = await getTokenAluno(
@@ -63,9 +69,6 @@ describe("Cadastrar trabalho do aluno em disciplina", () => {
         entregaTrabalho.dadosTrabalho,
       );
 
-      expect(alunoId).to.not.be.undefined;
-      expect(disciplinaId).to.not.be.undefined;
-      expect(matriculaId).to.not.be.undefined;
       expect(trabalhoId).to.not.be.undefined;
     });
   });
