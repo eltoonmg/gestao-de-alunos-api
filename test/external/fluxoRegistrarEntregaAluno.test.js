@@ -37,6 +37,9 @@ describe("Cadastrar trabalho do aluno em disciplina", () => {
         entregaTrabalho.dadosAluno,
       );
 
+      console.log("===== CADASTRO DO ALUNO =====");
+      console.log("alunoId:", alunoId);
+
       expect(alunoId).to.not.be.undefined;
 
       // Cadastrar Disciplina
