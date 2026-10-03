@@ -64,3 +64,5 @@ jobs:
         env:
           MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos-test
           BASE_URL: http://127.0.0.1:3081
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_SENHA: ${{ secrets.ADMIN_SENHA }}
