@@ -1,0 +1,38 @@
+[
+  {
+    "testTitle": "Cadastrar trabalho do aluno em disciplina",
+    "dadosAluno": {
+      "nome": "Elton Machado",
+      "email": "eltonmachado@gmail.com",
+      "matricula": "847812050",
+      "senha": "123456"
+    },
+    "dadosDisciplina": {
+      "nome": "Automação de Testes",
+      "codigo": "PL30207",
+      "cargaHoraria": "60"
+    },
+    "dadosTrabalho": {
+      "titulo": "Trabalho de Automação",
+      "descricao": "Descrição do trabalho"
+    }
+  },
+  {
+    "testTitle": "Cadastrar segundo trabalho",
+    "dadosAluno": {
+      "nome": "João",
+      "email": "joao@email.com",
+      "matricula": "847812051",
+      "senha": "123456"
+    },
+    "dadosDisciplina": {
+      "nome": "Automação de Testes",
+      "codigo": "PL30207",
+      "cargaHoraria": "60"
+    },
+    "dadosTrabalho": {
+      "titulo": "Trabalho de JavaScript",
+      "descricao": "Descrição do trabalho"
+    }
+  }
+]
