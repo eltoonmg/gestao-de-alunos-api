@@ -13,66 +13,104 @@ describe("Cadastrar trabalho do aluno em disciplina", () => {
   let alunoId, disciplinaId, matriculaId, trabalhoId;
 
   afterEach(async () => {
-    //Realizando limpeza dos dados de teste Alunos, Disciplinas e Trabalho
+    // Realizando limpeza dos dados de teste
     const tokenAdmin = await comTokenDeAdmin();
 
     if (trabalhoId) {
-      const resposta = await excluirTrabalho(tokenAdmin, trabalhoId);
+      await excluirTrabalho(tokenAdmin, trabalhoId);
     }
 
     if (disciplinaId) {
-      const resposta = await excluirDisciplina(tokenAdmin, disciplinaId);
+      await excluirDisciplina(tokenAdmin, disciplinaId);
     }
 
     if (alunoId) {
-      const resposta = await excluirAluno(tokenAdmin, alunoId);
+      await excluirAluno(tokenAdmin, alunoId);
     }
   });
 
   fluxoEntregaTrabalho.forEach((entregaTrabalho) => {
     it(entregaTrabalho.testTitle, async () => {
-      // Cadastrar o aluno
-      alunoId = await cadastrarAluno(
+
+      // Realiza o cadastro do aluno com token de Admin
+      const respostaAluno = await cadastrarAluno(
         await comTokenDeAdmin(),
         entregaTrabalho.dadosAluno,
       );
 
-      console.log("===== CADASTRO DO ALUNO =====");
-      console.log("alunoId:", alunoId);
+      //Assert(Validar)
+      //Validar Status
+      expect(respostaAluno.status).to.equal(201);
 
+      alunoId = respostaAluno.body.id;
+
+      //Validar nome,id,email e senha
       expect(alunoId).to.not.be.undefined;
+      expect(respostaAluno.body.email).to.not.be.undefined;
+      expect(respostaAluno.body.matricula).to.not.be.undefined;
+      expect(respostaAluno.body.nome).to.not.be.undefined;
 
-      // Cadastrar Disciplina
-      disciplinaId = await cadastroDisciplina(
+
+
+      // Cadastrar disciplina
+      const respostaDisciplina = await cadastroDisciplina(
         await comTokenDeAdmin(),
         entregaTrabalho.dadosDisciplina,
       );
 
+      //Assert(Validar)
+      //Validar Status
+      expect(respostaDisciplina.status).to.equal(201);
+      
+      //Validar id
+      disciplinaId = respostaDisciplina.body.id
       expect(disciplinaId).to.not.be.undefined;
+      expect(respostaDisciplina.body.nome).to.not.be.undefined;
+      expect(respostaDisciplina.body.codigo).to.not.be.undefined;
+      expect(respostaDisciplina.body.cargaHoraria).to.not.be.undefined;
 
-      // Matricular na Disciplina
-      matriculaId = await cadastroMatricula(
+
+      // Matricular aluno na disciplina
+      const respostaMatricula = await cadastroMatricula(
         await comTokenDeAdmin(),
         alunoId,
         disciplinaId,
       );
 
-      expect(matriculaId).to.not.be.undefined;
+      //Assert(Validar)
+      //Validar Status
+      expect(respostaMatricula.status).to.equal(201);
 
-      //Cadastrar Trabalho na Disciplina Matriculada
+      //Validar matriculaid, disciplinaid e alunoId
+      matriculaId = respostaMatricula.body.id;
+      expect(matriculaId).to.not.be.undefined;
+      expect(respostaMatricula.body.disciplinaId).to.not.be.undefined;
+      expect(respostaMatricula.body.alunoId).to.not.be.undefined;
+
+
+      // Cadastrar trabalho na disciplina matriculada
       const tokenAluno = await getTokenAluno(
         entregaTrabalho.dadosAluno.email,
         entregaTrabalho.dadosAluno.senha,
       );
 
-      trabalhoId = await cadastroTrabalho(
+      const respostaTrabalho = await cadastroTrabalho(
         tokenAluno,
         alunoId,
         disciplinaId,
         entregaTrabalho.dadosTrabalho,
       );
 
+      //Assert(Validar)
+      //Validar Status
+      expect(respostaTrabalho.status).to.equal(201);
+
+      //Validar id, status, descrição e titulo
+      trabalhoId = respostaTrabalho.body.id;
       expect(trabalhoId).to.not.be.undefined;
+      expect(respostaTrabalho.body.descricao).to.not.be.undefined;
+      expect(respostaTrabalho.body.titulo).to.not.be.undefined;
+      expect(respostaTrabalho.body.status).to.be.equal("entregue");
     });
   });
 });

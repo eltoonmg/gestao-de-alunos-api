@@ -15,5 +15,5 @@ export async function cadastroTrabalho(
       titulo: dadosTrabalho.titulo,
       descricao: dadosTrabalho.descricao,
     });
-  return cadastroTrabalhoResposta.body.id;
+  return cadastroTrabalhoResposta;
 }

@@ -9,5 +9,5 @@ export async function cadastroMatricula(token, alunoId, disciplinaId) {
       alunoId: alunoId,
     });
 
-  return cadastroMatriculaResposta.body.id;
+  return cadastroMatriculaResposta;
 }

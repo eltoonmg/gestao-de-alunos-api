@@ -1,6 +1,6 @@
 [
   {
-    "testTitle": "Cadastrar trabalho do aluno em disciplina",
+    "testTitle": "TC01 - Cadastrar aluno e entregar trabalho",
     "dadosAluno": {
       "nome": "Elton Machado",
       "email": "eltonmachado@gmail.com",
@@ -18,7 +18,7 @@
     }
   },
   {
-    "testTitle": "Cadastrar segundo trabalho",
+    "testTitle": "TC02 - Cadastrar outro aluno e entregar trabalho",
     "dadosAluno": {
       "nome": "João",
       "email": "joao@email.com",
@@ -33,6 +33,24 @@
     "dadosTrabalho": {
       "titulo": "Trabalho de JavaScript",
       "descricao": "Descrição do trabalho"
+    }
+  },
+  {
+    "testTitle": "TC03 - Cadastrar outro aluno em uma disciplina já existente",
+    "dadosAluno": {
+      "nome": "Maria",
+      "email": "maria@email.com",
+      "matricula": "847812052",
+      "senha": "123456"
+    },
+    "dadosDisciplina": {
+      "nome": "Automação de Testes",
+      "codigo": "PL30207",
+      "cargaHoraria": "60"
+    },
+    "dadosTrabalho": {
+      "titulo": "Trabalho de JavaScript",
+      "descricao": "Descrição do trabalho de Maria"
     }
   }
 ]

@@ -7,8 +7,5 @@ export async function cadastrarAluno(token, dadosAluno) {
     .set("Authorization", token)
     .send(dadosAluno);
 
-  console.log("STATUS CADASTRO ALUNO:", cadastroAlunoResposta.status);
-  console.log("BODY CADASTRO ALUNO:", cadastroAlunoResposta.body);
-
-  return cadastroAlunoResposta.body.id;
+  return cadastroAlunoResposta;
 }

@@ -7,5 +7,5 @@ export async function cadastroDisciplina(token, dadosDisciplina) {
     .set("Authorization", token)
     .send(dadosDisciplina);
 
-  return cadastroDisciplinaResposta.body.id;
+  return cadastroDisciplinaResposta;
 }
